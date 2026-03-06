@@ -1,0 +1,280 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    padding: 15px; /* Padding para não grudar nas bordas */
+}
+
+.container {
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 25px;
+    padding: 25px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    /* Animação suave ao abrir */
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.search-box {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+#city-input {
+    flex: 1;
+    padding: 15px; /* Aumentado para dedo no celular */
+    border: none;
+    border-radius: 15px;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    outline: none;
+    transition: 0.3s;
+    appearance: none;
+    -webkit-appearance: none; /* Remove estilo padrão do iOS */
+}
+
+#city-input:focus {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+}
+
+#city-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 15px;
+}
+
+#search-btn {
+    width: 55px; /* Aumentado para facilitar clique */
+    border: none;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 24px; /* Emoji maior */
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-tap-highlight-color: transparent; /* Remove highlight no iOS */
+}
+
+#search-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+#search-btn:active {
+    transform: scale(0.95); /* Efeito de clique */
+}
+
+.weather-info {
+    color: white;
+    text-align: center; /* Centraliza no mobile */
+}
+
+#city {
+    font-size: 32px;
+    font-weight: 300;
+    margin-bottom: 15px;
+    word-break: break-word; /* Quebra texto longo */
+}
+
+#temperature {
+    font-size: 56px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.weather-detail {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centraliza */
+    gap: 10px;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 50px;
+}
+
+#weather-icon {
+    width: 60px;
+    height: 60px;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+#description {
+    font-size: 20px;
+    text-transform: capitalize;
+    font-weight: 400;
+}
+
+#humidity, #wind {
+    font-size: 18px;
+    margin-top: 15px;
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.1);
+    padding: 12px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* ========== MEDIA QUERIES ========== */
+
+/* Celulares pequenos (até 360px) */
+@media screen and (max-width: 360px) {
+    .container {
+        padding: 20px;
+    }
+    
+    #city {
+        font-size: 26px;
+    }
+    
+    #temperature {
+        font-size: 46px;
+    }
+    
+    .search-box {
+        flex-direction: column; /* Input e botão em coluna */
+    }
+    
+    #search-btn {
+        width: 100%;
+        height: 50px;
+        font-size: 20px;
+    }
+    
+    #city-input {
+        width: 100%;
+    }
+}
+
+/* Celulares médios (361px - 480px) */
+@media screen and (min-width: 361px) and (max-width: 480px) {
+    .container {
+        max-width: 95%;
+    }
+    
+    #city {
+        font-size: 28px;
+    }
+    
+    #temperature {
+        font-size: 52px;
+    }
+}
+
+/* Tablets (481px - 768px) */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .container {
+        max-width: 450px;
+    }
+    
+    #city {
+        font-size: 34px;
+    }
+}
+
+/* Telas grandes (acima de 768px) */
+@media screen and (min-width: 769px) {
+    .container {
+        max-width: 400px;
+    }
+    
+    .weather-info {
+        text-align: left; /* Volta ao normal em telas grandes */
+    }
+    
+    .weather-detail {
+        justify-content: flex-start;
+    }
+    
+    #humidity, #wind {
+        justify-content: flex-start;
+    }
+}
+
+/* Ajustes para telas muito grandes */
+@media screen and (min-width: 1200px) {
+    body {
+        zoom: 1.1; /* Leve aumento em telas grandes */
+    }
+}
+
+/* Suporte a orientação paisagem em celulares */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    body {
+        padding: 10px;
+    }
+    
+    .container {
+        max-width: 500px;
+    }
+    
+    .search-box {
+        margin-bottom: 15px;
+    }
+    
+    .weather-detail {
+        margin-bottom: 10px;
+    }
+    
+    #humidity, #wind {
+        margin-top: 8px;
+    }
+}
+
+/* Dark mode automático (opcional) */
+@media (prefers-color-scheme: dark) {
+    body {
+        background: linear-gradient(135deg, #0a1929, #1a3b4f);
+    }
+}
+
+/* Melhorias de acessibilidade */
+@media (prefers-reduced-motion: reduce) {
+    .container {
+        animation: none;
+    }
+    
+    #search-btn:active {
+        transform: none;
+    }
+}
+
+/* Ajuste para telas com notch */
+@supports (padding: max(0px)) {
+    body {
+        padding-left: max(15px, env(safe-area-inset-left));
+        padding-right: max(15px, env(safe-area-inset-right));
+        padding-top: max(15px, env(safe-area-inset-top));
+        padding-bottom: max(15px, env(safe-area-inset-bottom));
+    }
+}
