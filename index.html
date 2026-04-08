@@ -3,27 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Previsão do Tempo</title>
+    <title>Temporal - Clima Animado</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <div class="search-box">
-            <input type="text" id="city-input" placeholder="Digite o nome da cidade">
-            <button id="search-btn">🔍</button>
+    <div class="big-box">
+        <div>
+            <input class="input-city" type="text" placeholder="Digite o nome da cidade">
+            <button class="button-search" onclick="cliqueiNoBotao()">
+                <img src="https://cdn-icons-png.flaticon.com/512/54/54481.png" alt="Buscar">
+            </button>
         </div>
         
-        <div class="weather-info">
-            <h2 id="city">Tempo em...</h2>
-            <div id="temperature">--°C</div>
+        <div class="mid-box">
+            <div class="city">Tempo em...</div>
+            <div class="temp">--°C</div>
             
-            <div class="weather-detail">
-                <img id="weather-icon" src="" alt="icone" style="display: none;">
-                <span id="description"></span>
+            <div class="small-box">
+                <img class="icon-prevision" src="" alt="Ícone do clima" style="display: none;">
+                <div class="text-prevision"></div>
             </div>
             
-            <div id="humidity">Umidade: --%</div>
-            <div id="wind">Vento: -- km/h</div>
+            <div class="humidity">Umidade: --%</div>
+            <div class="wind">Vento: -- km/h</div>
         </div>
     </div>
 
