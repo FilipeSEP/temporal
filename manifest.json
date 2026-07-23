@@ -1,0 +1,10 @@
+{
+  "name": "Temporal - Clima Animado",
+  "short_name": "Temporal",
+  "description": "Clima atual e previsão dos próximos dias com fundo animado.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#0d0d1a",
+  "theme_color": "#0d0d1a",
+  "icons": []
+}

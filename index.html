@@ -4,25 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Temporal - Clima Animado</title>
+    <meta name="description" content="Consulte o clima atual e a previsão dos próximos dias para qualquer cidade, com um fundo animado que reflete as condições do tempo em tempo real.">
+    <meta name="theme-color" content="#0d0d1a">
+
+    <!-- Open Graph / preview ao compartilhar -->
+    <meta property="og:title" content="Temporal - Clima Animado">
+    <meta property="og:description" content="Consulte o clima atual e a previsão dos próximos dias para qualquer cidade.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://filipesep.github.io/temporal/">
+
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9B%85%3C/text%3E%3C/svg%3E">
+    <link rel="manifest" href="manifest.json">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="weather-bg clear-night" aria-hidden="true"></div>
     <div class="overlay"></div>
 
     <div class="big-box">
 
         <div class="search-box">
-            <input
-                id="input-city"
-                class="input-city"
-                type="text"
-                placeholder="Buscar cidade..."
-                aria-label="Nome da cidade"
-                onkeydown="if(event.key==='Enter') cliqueiNoBotao()"
-            >
+            <div class="input-wrap">
+                <input
+                    id="input-city"
+                    class="input-city"
+                    type="text"
+                    placeholder="Buscar cidade..."
+                    aria-label="Nome da cidade"
+                    autocomplete="off"
+                    onkeydown="handleKeyDown(event)"
+                    oninput="handleInput(event)"
+                    onblur="handleBlur()"
+                >
+                <ul id="suggestions" class="suggestions" role="listbox" hidden></ul>
+            </div>
             <button class="button-search" aria-label="Buscar cidade" onclick="cliqueiNoBotao()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
@@ -36,14 +55,21 @@
             </button>
         </div>
 
-        <div class="mid-box">
-            <div class="city">Temporal</div>
-            <div class="country"></div>
+        <div class="error-message" id="error-message" role="alert" hidden></div>
+
+        <div class="mid-box" aria-live="polite">
+            <div class="city-row">
+                <div>
+                    <div class="city">Temporal</div>
+                    <div class="country"></div>
+                </div>
+                <button class="unit-toggle" id="unit-toggle" aria-label="Alternar entre Celsius e Fahrenheit" onclick="alternarUnidade()">°C</button>
+            </div>
 
             <div class="temp-row">
                 <div class="temp">--°</div>
                 <div class="small-box">
-                    <img class="icon-prevision" src="" alt="Ícone do clima" style="display:none;">
+                    <img class="icon-prevision" src="" alt="" style="display:none;">
                     <div class="text-prevision">Busque uma cidade</div>
                 </div>
             </div>
